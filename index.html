@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM</title>
+
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            text-align: center;
+        }
+
+        .btn-color {
+            background-color: rgb(0, 255, 0);
+        }
+
+        .merah {
+            width: 30px;
+            height: 30px;
+            margin: 10px auto;
+            background-color: red;
+        }
+
+        .hijau {
+            width: 30px;
+            height: 30px;
+            margin: 10px auto;
+            background-color: rgb(0, 255, 0);
+        }
+
+        .biru {
+            width: 30px;
+            height: 30px;
+            margin: 10px auto;
+            background-color: rgb(0, 38, 255);
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>Bermain Dengan Warna</h1>
+
+    <button type="button" id="btn">Change</button>
+
+    <br><br>
+
+    <div class="merah"></div>
+    <input type="range" id="red">
+    <div class="hijau"></div>
+    <input type="range" id="green">
+    <div class="biru"></div>
+    <input type="range" id="blue">
+
+
+    <script>
+        // const btn = document.getElementById('btn');
+
+        // function warna() {
+        //     btn.style.backgroundColor = 'lightblue';
+        // }
+
+        // btn.onclick = warna;
+
+        const btn = document.getElementById('btn');
+
+        btn.addEventListener('click', function () {
+            document.body.classList.toggle('btn-color');
+        });
+
+        const btn1 = document.createElement('button');
+        const teks = document.createTextNode('random');
+        btn1.setAttribute('type', 'button');
+        btn1.appendChild(teks);
+        btn.after(btn1);
+
+        btn1.addEventListener('click', function () {
+
+            const r = Math.round(Math.random() * 255 + 1);
+            console.log(r);
+            const g = Math.round(Math.random() * 255 + 1);
+            console.log(r);
+            const b = Math.round(Math.random() * 255 + 1);
+            console.log(r);
+
+            document.body.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
+        });
+
+        const red = document.getElementById('red');
+        const green = document.getElementById('green');
+        const blue = document.getElementById('blue');
+        red.addEventListener('input', function () {
+            const r = red.value;
+            const g = green.value;
+            const b = blue.value;
+            document.body.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
+        });
+        green.addEventListener('input', function () {
+            const r = red.value;
+            const g = green.value;
+            const b = blue.value;
+            document.body.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
+        });
+        blue.addEventListener('input', function () {
+            const r = red.value;
+            const g = green.value;
+            const b = blue.value;
+            document.body.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
+        });
+
+        document.body.addEventListener('mousemove', function (MouseEvent) {
+            // posisi mouse
+            // console.log('clientX');
+            // ukuran browser
+            //windows.innerWidth
+            const x = Math.round((MouseEvent.clientX / window.innerWidth) * 255);
+            const y = Math.round((MouseEvent.clientY / window.innerHeight) * 255);
+            document.body.style.backgroundColor = 'rgb(' + x + ',' + y + ', 100)';
+        });
+    </script>
+</body>
+
+</html>
